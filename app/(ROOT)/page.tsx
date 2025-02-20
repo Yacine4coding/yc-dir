@@ -1,62 +1,71 @@
 import SearchForm from "@/components/SearchForm";
-import StartupCard from "@/components/StartupCard";
-import { title } from "process";
+import StartupCard, { StartupCardType } from "@/components/StartupCard";
+import { client } from "@/sanity/lib/client";
+import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 
-export default async function Home( { searchParams }: { searchParams: Promise<{ query?: string }> }) {
+
+export default async function Home( { searchParams }: { 
+  searchParams: Promise<{ query?: string }> 
+}) {
+
   const query = (await searchParams).query;
 
-  const posts = [
-    {
-      _id: '1',
-      _createdAt: new Date(),
-      views: 120,
-      author: { _id: 1, name:'John Doe'},
-      description: 'This is a description of the first post.',
-      image: `https://placehold.co/600x400/EEE/31343C?font=playfair-display&text=Yacine4real`,
-      category: 'Tech',
-      title: 'First Post'
-    },
-    {
-      _id: '3',
-      _createdAt: new Date(),
-      views: 200,
-      author: { _id: 2, name:'Alice Johnson'},
-      description: 'This is a description of the third post.',
-      image: `https://placehold.co/600x400/EEE/31343C?font=playfair-display&text=Yacine4real`,
-      category: 'Health',
-      title: 'Third Post'
-    },
-    {
-      _id: '4',
-      _createdAt: new Date(),
-      views: 150,
-      author: { _id: 3, name:'Bob Brown'},
-      description: 'This is a description of the fourth post.',
-      image: `https://placehold.co/600x400/EEE/31343C?font=playfair-display&text=Yacine4real`,
-      category: 'Education',
-      title: 'Fourth Post'
-    },
-    {
-      _id: '5',
-      _createdAt: new Date(),
-      views: 95,
-      author: { _id: 4, name:'Charlie Davis'},
-      description: 'This is a description of the fifth post.',
-      image: `https://placehold.co/600x400/EEE/31343C?font=playfair-display&text=Yacine4real`,
-      category: 'Lifestyle',
-      title: 'Fifth Post'
-    },
-    {
-      _id: '2',
-      _createdAt: new Date(),
-      views: 85,
-      author: { _id: 5, name:'Jane Smith'},
-      description: 'This is a description of the second post.',
-      image: `https://placehold.co/600x400/EEE/31343C?font=playfair-display&text=Yacine4real`,
-      category: 'Business',
-      title: 'Second Post'
-    }
-  ];
+  const posts = await client.fetch(STARTUPS_QUERY);
+  
+    
+
+  // const posts = [
+  //   {
+  //     _id: '1',
+  //     _createdAt: new Date(),
+  //     views: 120,
+  //     author: { _id: 1, name:'John Doe'},
+  //     description: 'This is a description of the first post.',
+  //     image: `https://placehold.co/600x400/EEE/31343C?font=playfair-display&text=Yacine4real`,
+  //     category: 'Tech',
+  //     title: 'First Post'
+  //   },
+  //   {
+  //     _id: '3',
+  //     _createdAt: new Date(),
+  //     views: 200,
+  //     author: { _id: 2, name:'Alice Johnson'},
+  //     description: 'This is a description of the third post.',
+  //     image: `https://placehold.co/600x400/EEE/31343C?font=playfair-display&text=Yacine4real`,
+  //     category: 'Health',
+  //     title: 'Third Post'
+  //   },
+  //   {
+  //     _id: '4',
+  //     _createdAt: new Date(),
+  //     views: 150,
+  //     author: { _id: 3, name:'Bob Brown'},
+  //     description: 'This is a description of the fourth post.',
+  //     image: `https://placehold.co/600x400/EEE/31343C?font=playfair-display&text=Yacine4real`,
+  //     category: 'Education',
+  //     title: 'Fourth Post'
+  //   },
+  //   {
+  //     _id: '5',
+  //     _createdAt: new Date(),
+  //     views: 95,
+  //     author: { _id: 4, name:'Charlie Davis'},
+  //     description: 'This is a description of the fifth post.',
+  //     image: `https://placehold.co/600x400/EEE/31343C?font=playfair-display&text=Yacine4real`,
+  //     category: 'Lifestyle',
+  //     title: 'Fifth Post'
+  //   },
+  //   {
+  //     _id: '2',
+  //     _createdAt: new Date(),
+  //     views: 85,
+  //     author: { _id: 5, name:'Jane Smith'},
+  //     description: 'This is a description of the second post.',
+  //     image: `https://placehold.co/600x400/EEE/31343C?font=playfair-display&text=Yacine4real`,
+  //     category: 'Business',
+  //     title: 'Second Post'
+  //   }
+  // ];
   
   return (
     <>
