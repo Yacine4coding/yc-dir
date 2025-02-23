@@ -48,7 +48,8 @@
   }
 
   .pink_container {
-    @apply w-full bg-primary min-h-[530px] pattern flex justify-center items-center flex-col py-10 px-6;
+    @apply w-full bg-primary min-h-[530px] flex justify-center items-center flex-col py-10 px-6;
+    @apply pattern !important;
   }
 
   .tag {
@@ -208,7 +209,7 @@
     );
     background-size: 5% 100%;
     background-position: center;
-    background-repeat: repeat-x;
+    background-repeat: repeat;
   }
 
   .tag-tri {
